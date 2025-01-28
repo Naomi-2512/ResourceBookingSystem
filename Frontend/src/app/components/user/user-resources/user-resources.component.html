@@ -1,0 +1,14 @@
+<div class="resourceDiv">
+    <div class="cardDiv" *ngFor="let resource of resources">
+        <div class="imageDiv">
+            <img [src]="resource.image" [alt]="resource.name">
+        </div>
+        <div class="nameDiv">
+            <h3>{{resource.name}}</h3>
+        </div>
+        <div class="buttonsDiv">
+            <button>Details</button>
+            <button>Book</button>
+        </div>
+    </div>
+</div>

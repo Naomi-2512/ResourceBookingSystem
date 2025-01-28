@@ -1,0 +1,62 @@
+:root {
+    --hover-color: #0FE916;
+    --text-color: white;
+    --bg-color:#1E1E1E;
+    --bgg-color:#191A1C;
+    --greyish-color:#5F6468;
+}
+.resourceDiv{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    column-gap: 3%;
+    row-gap: 3vh;
+}
+.cardDiv{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    border-radius: 5px;
+    background-color: #1E1E1E;
+    height: 30vh;
+}
+.imageDiv{
+    display: flex;
+    height: 60%;
+    width: 100%;
+    background: #5F6468;
+    border-radius: 3px;
+}
+.imageDiv img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+
+}
+.nameDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+}
+.buttonsDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+}
+.buttonsDiv button{
+    width: 40%;
+    height: 70%;
+    border-radius: 5px;
+    color: #0FE916;
+    border: none;
+    background-color: transparent;
+    font-size: larger;
+}
+.buttonsDiv button:hover{
+    cursor: pointer;
+    opacity: 0.7;
+}

@@ -1,0 +1,27 @@
+<div class="entirePage">
+    <app-user-top-bar></app-user-top-bar>
+    <div class="container">
+        <app-user-side-bar></app-user-side-bar>
+        <div class="content">
+            <div class="topContent">
+                <div class="searchDiv">
+                    <input type="search" placeholder="Search" class="search">
+                    <button><i class='bx bx-search-alt-2 iconn' ></i></button>
+                </div>
+                <div class="categoryDiv">
+                    <select name="" id="">
+                        <option value="">Categories</option>
+                        <option value="">Category 1</option>
+                        <option value="">Category 2</option>
+                        <option value="">Category 3</option>
+                        <option value="">Category 4</option>
+                        <option value="">Category 5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="otherContent">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

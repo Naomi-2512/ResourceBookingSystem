@@ -1,0 +1,18 @@
+<div class="bookedDiv">
+    <div class="booked">
+        <div class="titleDiv">
+            <h3></h3>
+            <h3>ITEM</h3>
+            <h3>QUANTITY</h3>
+            <h3>RETURN DATE</h3>
+            <h3>STATUS</h3>
+        </div>
+        <div class="detailsDiv" *ngFor="let resource of resources">
+            <button>View</button>
+            <p>{{resource.name}}</p>
+            <p>{{resource.quantity}}</p>
+            <p>{{resource.returnDate}}</p>
+            <p>{{resource.status}}</p>
+        </div>
+    </div>
+</div>
