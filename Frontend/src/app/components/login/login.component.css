@@ -1,0 +1,136 @@
+:root {
+    --hover-color: #0FE916;
+    --text-color: white;
+    --bg-color:#1E1E1E;
+    --bgg-color:#191A1C;
+    --greyish-color:#5F6468;
+}
+.registrationPage{
+    background-color:#191A1C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+.registrationCard{
+    display: flex;
+    border-radius: 5px;
+    width: 60%;
+    height: 60vh;
+    background-color: #1E1E1E;
+    border: solid 1px #5F6468;
+}
+.imageDiv{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    justify-content: center;
+}
+.imageDiv img{
+    width: 100%;
+    border-radius: 5px;
+    height: 100%;
+    object-fit: cover;
+}
+.formDiv{
+    width: 50%;
+    border-radius: 5px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.sign{
+    height: 20%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+.form{
+    height: 70%;
+    display: flex;
+    width: 100%;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    row-gap: 2vh;
+}
+.inputDiv{
+    height: 7.5vh;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fileDiv{
+    height: 6vh;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.submitDiv{
+    height: 6vh;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.termsDiv{
+    height: 6vh;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.submitDiv button{
+    background-color: #0FE916;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 50%;
+    height: 80%;
+}
+.submitDiv button:hover{
+    cursor: pointer;
+    opacity: 0.7;
+    font-size: medium;
+}
+.fileDiv input{
+    height: 80%;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+}
+.inputDiv input{
+    height: 80%;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    border-bottom: solid 1px #5F6468;
+    padding-left: 14px;
+}
+::placeholder{
+    color: #5F6468;
+    font-size:medium;
+}
+.anchor{
+    color: #0FE916;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.anchor:hover{
+    opacity: 0.7;
+    text-decoration: none;
+    font-style: italic;
+}
