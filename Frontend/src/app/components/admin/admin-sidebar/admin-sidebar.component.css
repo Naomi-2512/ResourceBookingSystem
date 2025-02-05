@@ -1,0 +1,46 @@
+:root {
+    --hover-color: #0FE916;
+    --text-color: white;
+    --bg-color:#1E1E1E;
+}
+
+.sideDiv{
+    display: flex;
+    flex-direction:column;
+    height: 89.5vh;
+    width: 20%;
+    position: fixed; 
+    row-gap:2vh;
+    align-items: center;
+    bottom: 0; 
+    left: 0; 
+    background-color:#1E1E1E ;
+}
+.sideContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 5px;
+    height: 6vh;
+}
+.sideContent:hover{
+    background-color: #0FE916;
+}
+.iconDiv{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+.iconTitle{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 40%;
+}
+.iconn{
+    font-size: 2rem;
+    color: white;
+}

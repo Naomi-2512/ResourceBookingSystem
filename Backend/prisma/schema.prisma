@@ -1,0 +1,99 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  userId           String             @id @unique
+  profileImage     String
+  firstName        String
+  lastName         String
+  isDeleted        Boolean            @default(false)
+  isWelcomed       Boolean            @default(false)
+  phone1           String             @unique
+  phone2           String             @unique
+  email            String             @unique
+  password         String
+  location         String
+  ResourceBookings ResourceBookings[] // Relationship to ResourceBookings
+  VenueBookings    VenueBookings[] // Relationship to VenueBookings
+  ChatsSent        Chats[]            @relation("SentChats") // Relationship to Chats (sender)
+  ChatsReceived    Chats[]            @relation("ReceivedChats") // Relationship to Chats (receiver)
+}
+
+model Resources {
+  resourceId        String             @id @unique
+  name              String
+  image             String
+  category          String
+  Availability      Boolean            @default(true)
+  categoryId        String
+  Quantity          Int
+  remainingQuantity Int
+  status            String             @default("good")
+  ResourceBookings  ResourceBookings[]
+  categories        Categories         @relation(fields: [categoryId], references: [categoryId], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model ResourceBookings {
+  bookId           String    @id @unique
+  userId           String
+  resourceId       String
+  quantity         Int
+  dateBooked       DateTime  @default(now())
+  userReturnDate   DateTime
+  actualReturnDate DateTime
+  isApproved       Boolean   @default(false)
+  isReturned       Boolean   @default(false)
+  isCancelled      Boolean   @default(false)
+  User             Users     @relation(fields: [userId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
+  Resources        Resources @relation(fields: [resourceId], references: [resourceId], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Venue {
+  venueId       String          @id @unique
+  name          String
+  Image         String
+  Availability  Boolean         @default(true)
+  VenueBookings VenueBookings[] // Relationship to VenueBookings
+}
+
+model VenueBookings {
+  bookId     String   @id @unique
+  userId     String
+  venueId    String
+  dateBooked DateTime @default(now())
+  isCancelled      Boolean   @default(false)
+  isApproved       Boolean   @default(false)
+  startTime  DateTime
+  duration   Int
+  User       Users    @relation(fields: [userId], references: [userId], onDelete: NoAction)
+  Venue      Venue    @relation(fields: [venueId], references: [venueId], onDelete: NoAction)
+}
+
+model Chats {
+  chatId       String   @id @unique
+  senderId     String
+  receiverId   String
+  content      String
+  dateCreated  DateTime @default(now())
+  dateModified DateTime @updatedAt
+  Sender       Users    @relation("SentChats", fields: [senderId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
+  Receiver     Users    @relation("ReceivedChats", fields: [receiverId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Categories {
+  categoryId   String      @id @unique
+  categoryName String      @unique
+  Resources    Resources[] // Relationship to Resources
+}

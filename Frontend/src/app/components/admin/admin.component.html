@@ -1,1 +1,20 @@
-<p>admin works!</p>
+<div class="entirePage">
+    <app-admin-topbar></app-admin-topbar>
+    <div class="container">
+        <app-admin-sidebar></app-admin-sidebar>
+        <div class="content">
+            <div class="topContent">
+                <div class="searchDiv">
+                    <button>Add Resource</button>
+                </div>
+                <div class="searchDiv">
+                    <button>Add Category</button>
+                </div>
+            </div>
+            <div class="otherContent">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+
