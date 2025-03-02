@@ -1,1 +1,114 @@
-<p>admin-dasboard works!</p>
+<div class="dashboard-container">
+    <div class="dashboard-header">
+      <h1>Admin Dashboard</h1>
+      <div class="stats-summary">
+        <div class="stat-card">
+          <div class="stat-value">{{totalResources}}</div>
+          <div class="stat-label">Total Resources</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{totalBookings}}</div>
+          <div class="stat-label">Active Bookings</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="resources-container">
+      <h2>Your Resources</h2>
+      <div class="resources-grid">
+        <div class="resource-card" *ngFor="let resource of resources" 
+            (click)="selectResource(resource)"
+            [ngClass]="{'selected': selectedResource?.id === resource.id}">
+          <div class="resource-icon">
+            <i class="fas" [ngClass]="getResourceIcon(resource.type)"></i>
+          </div>
+          <div class="resource-details">
+            <h3>{{resource.name}}</h3>
+            <p>{{resource.type}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="selected-resource-details" *ngIf="selectedResource">
+      <div class="details-header">
+        <h2>{{selectedResource.name}} Details</h2>
+      </div>
+      
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-boxes"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value">{{selectedResource.quantity}}</div>
+            <div class="stat-label">Total Quantity</div>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value">{{getBookedQuantity(selectedResource.id)}}</div>
+            <div class="stat-label">Booked</div>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-box-open"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value">{{getRemainingQuantity(selectedResource.id)}}</div>
+            <div class="stat-label">Available</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="bookings-section">
+        <h3>Current Bookings</h3>
+        <div class="table-container">
+          <table *ngIf="getResourceBookings(selectedResource.id).length > 0">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Quantity</th>
+                <th>Date Booked</th>
+                <th>Return Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let booking of getResourceBookings(selectedResource.id)">
+                <td>
+                  <div class="user-info">
+                    <img [src]="booking.user.image" alt="User">
+                    <span>{{booking.user.firstName}} {{booking.user.lastName}}</span>
+                  </div>
+                </td>
+                <td>{{booking.quantity}}</td>
+                <td>{{booking.dateBooked | date:'MMM d, y'}}</td>
+                <td>{{booking.returnDate | date:'MMM d, y'}}</td>
+                <td>
+                  <span class="status-badge" [ngClass]="booking.status">
+                    {{booking.status}}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="no-bookings" *ngIf="getResourceBookings(selectedResource.id).length === 0">
+            <i class="fas fa-calendar-times"></i>
+            <p>No active bookings for this resource</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="resource-placeholder" *ngIf="!selectedResource">
+      <i class="fas fa-hand-pointer"></i>
+      <p>Select a resource to view details and bookings</p>
+    </div>
+  </div>

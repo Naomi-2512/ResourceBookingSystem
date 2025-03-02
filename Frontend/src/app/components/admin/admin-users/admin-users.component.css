@@ -1,0 +1,168 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+.admin-dashboard {
+  background-color: #1E1E1E;
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 28px;
+  border-bottom: 2px solid #5F6468;
+  padding-bottom: 15px;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  background-color: #191A1C;
+  color: white;
+  border: 1px solid #5F6468;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-button.active {
+  background-color: #0FE916;
+  border-color: #0FE916;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  background-color: #191A1C;
+  border: 1px solid #5F6468;
+  color: white;
+  border-radius: 4px;
+}
+
+.users-list, .deleted-users-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.user-card {
+  display: flex;
+  background-color: #191A1C;
+  border: 1px solid #5F6468;
+  border-radius: 8px;
+  padding: 15px;
+  transition: transform 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.user-image {
+  flex: 0 0 80px;
+}
+
+.user-image img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-details {
+  flex: 1;
+  margin-left: 15px;
+  overflow: hidden;
+}
+
+.user-details h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.user-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #cccccc;
+}
+
+.user-details i {
+  width: 20px;
+  margin-right: 5px;
+  color: #0FE916;
+}
+
+.user-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-button.edit:hover {
+  color: #0FE916;
+}
+
+.action-button.delete:hover {
+  color: #ff5555;
+}
+
+.action-button.restore {
+  color: #0FE916;
+}
+
+.action-button.restore:hover {
+  transform: scale(1.2);
+}
+
+.no-results {
+  text-align: center;
+  padding: 30px;
+  background-color: #191A1C;
+  border: 1px solid #5F6468;
+  border-radius: 8px;
+}
+
+.deleted {
+  opacity: 0.7;
+}
+
+/* Animation for card appearance */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.user-card {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.user-card:nth-child(2n) {
+  animation-delay: 0.1s;
+}
+
+.user-card:nth-child(3n) {
+  animation-delay: 0.2s;
+}

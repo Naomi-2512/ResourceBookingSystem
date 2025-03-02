@@ -1,42 +1,342 @@
-<!-- iam developing a campus resource booking sustem.The colors that i have used for the pages i have already developed are #191A1C and #1E1E1E for general background,#0FE916 for buttons ang hovers on anchor tags and #5F6468 for border lines and search...using combination of the above colors and leaving gaps for image fill ups,create and generate me code for a landing page.Iam using angular therefore the code should be in landing.component.html,landing.component.css and if needed landing.component.ts.include the following parts of the landing page in the navbar home,Resources,Bookings and contact.The compone t is only one(landingpage component)It includes all the details...the user should be able to scroll and see home,resources,bookings and contacts or by clicking the specifics on the navbar.They all are on the same page..same component....Let the landing page be complete -->
 
-
-
-<div class="landing-container">
-    <header class="header">
-      <div class="logo">NAKBOOKINGS</div>
-      <nav class="nav">
-        <a href="#" class="nav-link">Home</a>
-        <a href="#" class="nav-link">Resources</a>
-        <a href="#" class="nav-link">Bookings</a>
-        <a href="#" class="nav-link">Contact</a>
-      </nav>
-    </header>
+  <div class="landing-page">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="logo-container">
+        <div class="logo-placeholder">NAKBOOKINGS</div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="auth-buttons">
+        <a href="/login" class="login-btn">Log In</a>
+        <a href="/register" class="signup-btn">Sign Up</a>
+      </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </nav>
   
-    <main class="main-content">
-      <section class="hero-section">
-        <h1 class="hero-title">Welcome to Campus Resource Booking</h1>
-        <p class="hero-subtitle">Easily book and manage campus resources in one place.</p>
-        <button class="cta-button">Get Started</button>
-      </section>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-content">
+        <h1 class="animated fadeIn">Book Campus Resources <span class="highlight">Effortlessly</span></h1>
+        <p class="animated fadeIn delay-1">The ultimate platform for managing and booking campus resources. Save time and maximize efficiency!</p>
+        <div class="cta-buttons animated fadeIn delay-2">
+          <a href="/register" class="primary-btn">Get Started</a>
+          <a href="#how-it-works" class="secondary-btn">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-image-container animated fadeInRight delay-1">
+        <div class="hero-image-placeholder">
+          <img src="https://i.pinimg.com/236x/f1/e4/28/f1e4282d24cb5adb4ced0c8efb5e900e.jpg" alt="image">
+        </div>
+      </div>
+    </section>
   
-      <section class="features-section">
-        <div class="feature-card">
-          <h2 class="feature-title">Easy Booking</h2>
-          <p class="feature-description">Quickly reserve resources with just a few clicks.</p>
+    <!-- Resources Section -->
+    <section id="resources" class="resources-section">
+      <div class="section-header animated fadeIn">
+        <h2>Available <span class="highlight">Resources</span></h2>
+        <p>Browse through our wide range of bookable campus resources</p>
+      </div>
+      
+      <div class="resources-slider">
+        <div class="resources-container">
+          <!-- Resource Card 1 -->
+          <div class="resource-card animated fadeIn delay-1">
+            <div class="resource-image-placeholder">
+              <img src="https://th.bing.com/th/id/R.a2cabe9ad68cf4ec1f9184f50bbbc867?rik=RTMA7QDBkhNtcA&riu=http%3a%2f%2fwww.goodfreephotos.com%2falbums%2fother-photos%2frooms%2flecture-hall.jpg&ehk=HynBL9DPWX26VGUxCNAZvuE4ANoiXMoWZ395xeTeyqE%3d&risl=&pid=ImgRaw&r=0" alt="">
+            </div>
+            <div class="resource-details">
+              <h3>Lecture Halls</h3>
+              <p>Spacious rooms equipped with modern presentation technology</p>
+              <a href="/resources/lecture-halls" class="view-details-btn">View Details</a>
+            </div>
+          </div>
+          
+          <!-- Resource Card 2 -->
+          <div class="resource-card animated fadeIn delay-2">
+            <div class="resource-image-placeholder">
+              <img src="https://i.pinimg.com/736x/57/a8/80/57a880e3731b82319f8be23777abf255.jpg" alt="">
+            </div>
+            <div class="resource-details">
+              <h3>Meeting Rooms</h3>
+              <p>Comfortable spaces for group discussions and collaborations</p>
+              <a href="/resources/meeting-rooms" class="view-details-btn">View Details</a>
+            </div>
+          </div>
+          
+          <!-- Resource Card 3 -->
+          <div class="resource-card animated fadeIn delay-3">
+            <div class="resource-image-placeholder">
+              <img src="https://th.bing.com/th/id/OIP.i5l9mfJ0eFGy9JhRnFkThgHaEy?w=281&h=180&c=7&r=0&o=5&pid=1.7" alt="">
+            </div>
+            <div class="resource-details">
+              <h3>Laboratory Spaces</h3>
+              <p>Well-equipped labs for scientific research and experiments</p>
+              <a href="/resources/laboratories" class="view-details-btn">View Details</a>
+            </div>
+          </div>
         </div>
-        <div class="feature-card">
-          <h2 class="feature-title">Real-Time Availability</h2>
-          <p class="feature-description">Check availability in real-time and avoid conflicts.</p>
+        
+        <div class="slider-controls">
+          <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+          <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
         </div>
-        <div class="feature-card">
-          <h2 class="feature-title">Manage Bookings</h2>
-          <p class="feature-description">View, modify, or cancel your bookings effortlessly.</p>
-        </div>
-      </section>
-    </main>
+      </div>
+    </section>
   
-    <!-- <footer class="footer">
-      <p class="footer-text">&copy; 2025 Campus Resource Booking. All rights reserved.</p>
-    </footer> -->
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works-section">
+      <div class="section-header animated fadeIn">
+        <h2>How It <span class="highlight">Works</span></h2>
+        <p>Simple steps to book your campus resources</p>
+      </div>
+      
+      <div class="steps-container">
+        <!-- Step 1 -->
+        <div class="step-card animated fadeInLeft delay-1">
+          <div class="step-icon">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <h3>Create Account</h3>
+          <p>Sign up with your campus email address and complete your profile</p>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="step-card animated fadeInLeft delay-2">
+          <div class="step-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <h3>Find Resources</h3>
+          <p>Browse available resources and check their availability</p>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="step-card animated fadeInLeft delay-3">
+          <div class="step-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3>Book & Confirm</h3>
+          <p>Select your preferred time slot and confirm your booking</p>
+        </div>
+        
+        <!-- Step 4 -->
+        <div class="step-card animated fadeInLeft delay-4">
+          <div class="step-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <h3>Use Resource</h3>
+          <p>Get access code or key and use the resource as scheduled</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+      <div class="section-header animated fadeIn">
+        <h2>What Users <span class="highlight">Say</span></h2>
+        <p>Hear from our satisfied users across campus</p>
+      </div>
+      
+      <div class="testimonials-slider">
+        <div class="testimonials-container">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-card animated fadeIn">
+            <div class="user-avatar-placeholder">
+              <img src="https://th.bing.com/th/id/OIP.6RpcCp4Q8toHv2hXxTm1iAHaFj?rs=1&pid=ImgDetMain" alt="">
+            </div>
+            <div class="testimonial-content">
+              <p>"NAKBOOKINGS has completely transformed how we manage our department resources. It's intuitive and saves us so much time!"</p>
+              <div class="user-info">
+                <h4>Sarah Johnson</h4>
+                <p>Faculty Member, Science Department</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Testimonial 2 -->
+          <div class="testimonial-card animated fadeIn delay-1">
+            <div class="user-avatar-placeholder">
+              <!-- User avatar will be added here -->
+            </div>
+            <div class="testimonial-content">
+              <p>"As a student club leader, I find it incredibly easy to book spaces for our meetings. The system is reliable and user-friendly!"</p>
+              <div class="user-info">
+                <h4>Michael Lee</h4>
+                <p>President, Student Engineering Society</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="slider-dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Statistics Section -->
+    <section class="statistics-section">
+      <div class="stat-card animated fadeInUp">
+        <div class="stat-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-count" data-count="5000">0</div>
+        <p>Active Users</p>
+      </div>
+      
+      <div class="stat-card animated fadeInUp delay-1">
+        <div class="stat-icon">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="stat-count" data-count="10000">0</div>
+        <p>Monthly Bookings</p>
+      </div>
+      
+      <div class="stat-card animated fadeInUp delay-2">
+        <div class="stat-icon">
+          <i class="fas fa-building"></i>
+        </div>
+        <div class="stat-count" data-count="200">0</div>
+        <p>Resources Available</p>
+      </div>
+      
+      <div class="stat-card animated fadeInUp delay-3">
+        <div class="stat-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="stat-count" data-count="98">0</div>
+        <p>Satisfaction Rate (%)</p>
+      </div>
+    </section>
+  
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="section-header animated fadeIn">
+        <h2>Get In <span class="highlight">Touch</span></h2>
+        <p>Have questions? Contact our support team</p>
+      </div>
+      
+      <div class="contact-container">
+        <div class="contact-form-container animated fadeInLeft">
+          <form class="contact-form" (ngSubmit)="onSubmitContact()">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="Enter your email address" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" placeholder="Enter message subject" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" rows="5" placeholder="Enter your message" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+        
+        <div class="contact-info-container animated fadeInRight">
+          <div class="contact-info-card">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Address</h3>
+              <p>University Campus, Building A <br> Floor 2, Room 201</p>
+            </div>
+          </div>
+          
+          <div class="contact-info-card">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Phone</h3>
+              <p>+1 (555) 123-4567</p>
+            </div>
+          </div>
+          
+          <div class="contact-info-card">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Email</h3>
+              <p>support&#64;nakbookings.com</p>
+            </div>
+          </div>
+          
+          <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <div class="logo-placeholder">NAKBOOKINGS</div>
+          <p>The smart way to manage campus resources</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="link-group">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#resources">Resources</a></li>
+              <li><a href="#how-it-works">How It Works</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          
+          <div class="link-group">
+            <h3>Resources</h3>
+            <ul>
+              <li><a href="/resources/lecture-halls">Lecture Halls</a></li>
+              <li><a href="/resources/meeting-rooms">Meeting Rooms</a></li>
+              <li><a href="/resources/laboratories">Laboratories</a></li>
+              <li><a href="/resources/study-spaces">Study Spaces</a></li>
+            </ul>
+          </div>
+          
+          <div class="link-group">
+            <h3>Support</h3>
+            <ul>
+              <li><a href="/faq">FAQ</a></li>
+              <li><a href="/help">Help Center</a></li>
+              <li><a href="/terms">Terms of Service</a></li>
+              <li><a href="/privacy">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 NAKBOOKINGS. All rights reserved.</p>
+      </div>
+    </footer>
   </div>

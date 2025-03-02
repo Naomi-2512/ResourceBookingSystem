@@ -1,1 +1,191 @@
-<p>user-chat works!</p>
+<!-- 
+<div class="app-container" [class.show-sidebar]="showSidebar">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>Messages</h2>
+      </div>
+      <div class="profile-section">
+        <div class="profile-pic-wrapper">
+          <img src="https://i.pinimg.com/474x/6a/f9/ca/6af9ca755d4d1850c97e89a38a288f24.jpg" alt="Profile Picture" class="profile-pic" />
+        </div>
+        <h3 class="profile-name">Jontray Arnold</h3>
+        <div class="status-dropdown">
+          <select>
+            <option value="available" selected>Available</option>
+            <option value="busy">Busy</option>
+            <option value="offline">Offline</option>
+          </select>
+        </div>
+      </div>
+      <div class="search-section">
+        <div class="search-wrapper">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" placeholder="Search conversations..." class="search-bar" />
+        </div>
+      </div>
+      <div class="chat-list">
+        <div *ngFor="let user of users" 
+             class="chat-item" 
+             [class.active]="activeChat.id === user.id"
+             (click)="selectChat(user)">
+          <img *ngIf="user.avatar" [src]="user.avatar" [alt]="user.name" class="chat-pic" />
+          <div *ngIf="user.initials" class="chat-pic initials">{{user.initials}}</div>
+          <div class="chat-info">
+            <h4>{{user.name}}</h4>
+            <p *ngIf="!user.isTyping">{{user.lastMessage}}</p>
+            <p *ngIf="user.isTyping"><span class="typing-indicator">typing...</span></p>
+          </div>
+          <span class="chat-time">{{user.time}}</span>
+          <span *ngIf="user.unreadCount" class="unread-badge">{{user.unreadCount}}</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="main-chat">
+      <header class="main-chat-header">
+        <div class="header-left">
+          <button class="back-button" aria-label="Back" (click)="toggleSidebar()">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <div class="active-chat-info">
+            <img *ngIf="activeChat.avatar" [src]="activeChat.avatar" alt="Active Chat" class="active-chat-pic" />
+            <div *ngIf="activeChat.initials" class="chat-pic initials active-chat-pic">{{activeChat.initials}}</div>
+            <div>
+              <h2>{{activeChat.name}}</h2>
+              <span class="online-status">Online</span>
+            </div>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="action-button" aria-label="Call">
+            <i class="fas fa-phone"></i>
+          </button>
+          <button class="action-button" aria-label="Video">
+            <i class="fas fa-video"></i>
+          </button>
+          <button class="action-button" aria-label="More">
+            <i class="fas fa-ellipsis-v"></i>
+          </button>
+        </div>
+      </header>
+    
+      <div class="chat-messages">
+        <div class="message-group">
+          <span class="message-date">Message</span>
+          <div *ngFor="let message of messages" 
+               class="message" 
+               [class.sent]="message.sent" 
+               [class.received]="!message.sent">
+            <img *ngIf="!message.sent" class="avatar" [src]="message.avatar" alt="User" />
+            <div class="message-content">
+              <p class="message-text" [innerHTML]="message.text"></p>
+              <span class="message-time">{{message.time}}</span>
+              <span *ngIf="message.sent && message.seen" class="message-status">
+                <i class="fas fa-check-double"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="chat-input-area">
+        <button class="attachment-button" aria-label="Add attachment">
+          <i class="fas fa-paperclip"></i>
+        </button>
+        <div class="input-wrapper">
+          <input type="text" placeholder="Write your message..." />
+          <button class="emoji-button" aria-label="Add emoji">
+            <i class="fas fa-smile"></i>
+          </button>
+        </div>
+        <button class="send-button" aria-label="Send message">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+ -->
+
+ <div class="chat-container">
+  <div class="chat-header">
+    <h2>Support Chat</h2>
+    <div class="status-indicator">
+      <span class="status-dot"></span>
+      <span class="status-text">Admin Online</span>
+    </div>
+  </div>
+  
+  <div class="chat-messages">
+    <div class="message-date-divider">Today</div>
+    
+    <!-- Admin messages -->
+    <div class="message-wrapper received">
+      <div class="message">
+        <div class="message-content">
+          Hello! How can I help you with booking campus resources today?
+        </div>
+        <div class="message-info">
+          <span class="message-time">10:05 AM</span>
+          <i class="edit-icon fas fa-pencil-alt"></i>
+        </div>
+      </div>
+    </div>
+    
+    <!-- User messages -->
+    <div class="message-wrapper sent">
+      <div class="message">
+        <div class="message-content">
+          Hi, I'm trying to book the conference room in Block B for tomorrow afternoon, but I'm getting an error.
+        </div>
+        <div class="message-info">
+          <span class="message-time">10:07 AM</span>
+          <i class="edit-icon fas fa-pencil-alt"></i>
+        </div>
+      </div>
+    </div>
+    
+    <div class="message-wrapper received">
+      <div class="message">
+        <div class="message-content">
+          I'll check that for you. Can you tell me what time you're trying to book it for?
+        </div>
+        <div class="message-info">
+          <span class="message-time">10:08 AM</span>
+          <i class="edit-icon fas fa-pencil-alt"></i>
+        </div>
+      </div>
+    </div>
+    
+    <div class="message-wrapper sent">
+      <div class="message">
+        <div class="message-content">
+          From 2 PM to 4 PM
+        </div>
+        <div class="message-info">
+          <span class="message-time">10:10 AM</span>
+          <i class="edit-icon fas fa-pencil-alt"></i>
+        </div>
+      </div>
+    </div>
+    
+    <div class="message-wrapper received">
+      <div class="message">
+        <div class="message-content">
+          I see the issue. There's already a booking for that room at 3 PM. Would you like me to suggest an alternative room or time?
+        </div>
+        <div class="message-info">
+          <span class="message-time">10:12 AM</span>
+          <i class="edit-icon fas fa-pencil-alt"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="chat-input">
+    <input type="text" placeholder="Type your message..." class="message-input">
+    <button class="send-button">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </div>
+</div>

@@ -1,1 +1,121 @@
-<p>admin-bookings works!</p>
+<div class="dashboard-container">
+    <h2 class="section-title">Resource & Venue Bookings</h2>
+    
+    <!-- Resource Bookings Section -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Resource Bookings</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="booking-table">
+            <thead>
+              <tr>
+                <th>Resource Name</th>
+                <th>Quantity</th>
+                <th>Date Booked</th>
+                <th>Return Date</th>
+                <th>Requested By</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let booking of resourceBookings" [class.approved]="booking.isApproved">
+                <td>{{ booking.resourceName }}</td>
+                <td>{{ booking.quantityBooked }}</td>
+                <td>{{ booking.dateBooked }}</td>
+                <td>{{ booking.returnDate }}</td>
+                <td>
+                  <a class="user-link" (click)="showUserDetails(booking.user)">
+                    {{ booking.userName }}
+                  </a>
+                </td>
+                <td>
+                  <button 
+                    class="approve-btn" 
+                    *ngIf="!booking.isApproved"
+                    (click)="approveResourceBooking(booking)">
+                    <i class="fa fa-check-circle"></i> Approve
+                  </button>
+                  <span class="approved-tag" *ngIf="booking.isApproved">
+                    <i class="fa fa-check-circle"></i> Approved
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Venue Bookings Section -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Venue Bookings</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="booking-table">
+            <thead>
+              <tr>
+                <th>Venue Name</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>Duration (hrs)</th>
+                <th>Requested By</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let booking of venueBookings" [class.approved]="booking.isApproved">
+                <td>{{ booking.venueName }}</td>
+                <td>{{ booking.dateBooked }}</td>
+                <td>{{ booking.startTime }}</td>
+                <td>{{ booking.duration }}</td>
+                <td>
+                  <a class="user-link" (click)="showUserDetails(booking.user)">
+                    {{ booking.userName }}
+                  </a>
+                </td>
+                <td>
+                  <button 
+                    class="approve-btn" 
+                    *ngIf="!booking.isApproved"
+                    (click)="approveVenueBooking(booking)">
+                    <i class="fa fa-check-circle"></i> Approve
+                  </button>
+                  <span class="approved-tag" *ngIf="booking.isApproved">
+                    <i class="fa fa-check-circle"></i> Approved
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+    <!-- User Details Modal -->
+    <div class="modal-overlay" *ngIf="showUserModal" (click)="closeUserModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h3>User Details</h3>
+          <button class="close-btn" (click)="closeUserModal()">×</button>
+        </div>
+        <div class="modal-body" *ngIf="selectedUser">
+          <div class="user-profile">
+            <div class="profile-image">
+              <img [src]="selectedUser.profilePicture" alt="Profile picture">
+            </div>
+            <div class="profile-details">
+              <h4>{{ selectedUser.name }}</h4>
+              <p><i class="fa fa-envelope"></i> {{ selectedUser.email }}</p>
+              <p><i class="fa fa-building"></i> {{ selectedUser.department }}</p>
+              <p><i class="fa fa-id-badge"></i> {{ selectedUser.role }}</p>
+              <p><i class="fa fa-phone"></i> {{ selectedUser.phoneNumber }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

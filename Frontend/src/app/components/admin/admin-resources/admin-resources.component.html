@@ -1,1 +1,104 @@
-<p>admin-resources works!</p>
+<div class="main-container">
+    <div class="resources-container" *ngIf="!showResourceDetails">
+      <h2>Resources</h2>
+      <div class="resource-list">
+        <div class="resource-card" *ngFor="let resource of resources">
+          <div class="resource-image">
+            <img [src]="resource.image" alt="{{ resource.name }}">
+          </div>
+          <div class="resource-info">
+            <h3>{{ resource.name }}</h3>
+            <p>Quantity: {{ resource.quantity }}</p>
+          </div>
+          <div class="resource-actions">
+            <button class="action-btn view-btn" (click)="viewResource(resource)" title="View Resource">
+              <i class="fas fa-eye"></i> View
+            </button>
+            <button class="action-btn edit-btn" (click)="editResource(resource)" title="Edit Resource">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="action-btn delete-btn" title="Delete Resource">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="resource-details" *ngIf="showResourceDetails && selectedResource">
+      <h2>Resource Details: {{ selectedResource.name }}</h2>
+      <button class="back-btn" (click)="showResourceDetails = false">
+        <i class="fas fa-arrow-left"></i> Back to List
+      </button>
+      <div class="detail-card">
+        <div class="detail-image">
+          <img [src]="selectedResource.image" alt="{{ selectedResource.name }}">
+        </div>
+        <div class="detail-info">
+          <h3>{{ selectedResource.name }}</h3>
+          <p><strong>Category:</strong> {{ selectedResource.category }}</p>
+          <p><strong>Total Quantity:</strong> {{ selectedResource.quantity }}</p>
+          <p><strong>Currently Booked:</strong> {{ selectedResource.booked }}</p>
+          <p><strong>Remaining:</strong> {{ selectedResource.remaining }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="edit-form" *ngIf="editingResource">
+      <h2>Edit Resource: {{ editingResource.name }}</h2>
+      <form>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" [(ngModel)]="editingResource.name" required>
+        </div>
+        <div class="form-group">
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" name="quantity" [(ngModel)]="editingResource.quantity" required>
+        </div>
+        <div class="form-group">
+          <label for="category">Category:</label>
+          <input type="text" id="category" name="category" [(ngModel)]="editingResource.category" required>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="save-btn">Save Changes</button>
+          <button type="button" class="cancel-btn" (click)="cancelResourceEdit()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  
+    <div class="venues-container" *ngIf="!showResourceDetails && !editingResource">
+      <h2>Venues</h2>
+      <div class="venue-list">
+        <div class="venue-card" *ngFor="let venue of venues">
+          <div class="venue-image">
+            <img [src]="venue.image" alt="{{ venue.name }}">
+          </div>
+          <div class="venue-info">
+            <h3>{{ venue.name }}</h3>
+          </div>
+          <div class="venue-actions">
+            <button class="action-btn edit-btn" (click)="editVenue(venue)" title="Edit Venue">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="action-btn delete-btn" title="Delete Venue">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="edit-form" *ngIf="editingVenue">
+      <h2>Edit Venue: {{ editingVenue.name }}</h2>
+      <form>
+        <div class="form-group">
+          <label for="venueName">Name:</label>
+          <input type="text" id="venueName" name="venueName" [(ngModel)]="editingVenue.name" required>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="save-btn">Save Changes</button>
+          <button type="button" class="cancel-btn" (click)="cancelVenueEdit()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>

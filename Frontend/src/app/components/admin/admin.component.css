@@ -8,6 +8,9 @@
 *{
     color: white;
 }
+body{
+    background-color: #1E1E1E;
+}
 .entirePage{
     display:flex;
     flex-direction:column;
@@ -20,6 +23,7 @@
     display:flex;
     width:79%;
     margin-top: 10vh;
+    background-color: #1E1E1E;
 }
 .content{
     display:flex;
@@ -88,4 +92,5 @@ select{
 .otherContent{
     width:100% ;
     margin-top: 3vh;
+    background-color: #191A1C;
 }

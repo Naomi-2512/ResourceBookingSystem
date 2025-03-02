@@ -1,1 +1,77 @@
-<p>admin-users works!</p>
+<div class="admin-dashboard">
+    <div class="header">
+      <h1>User Management</h1>
+    </div>
+  
+    <div class="tabs">
+      <button 
+        [ngClass]="{'active': !showDeletedUsers}" 
+        (click)="showDeletedUsers = false"
+        class="tab-button">
+        Active Users
+      </button>
+      <button 
+        [ngClass]="{'active': showDeletedUsers}" 
+        (click)="showDeletedUsers = true"
+        class="tab-button">
+        Deleted Users
+      </button>
+    </div>
+  
+    <div class="users-container" *ngIf="!showDeletedUsers">
+      <div class="search-bar">
+        <input type="text" placeholder="Search users..." [(ngModel)]="searchTerm" (input)="filterUsers()">
+      </div>
+  
+      <div class="users-list" *ngIf="filteredUsers.length > 0">
+        <div class="user-card" *ngFor="let user of filteredUsers">
+          <div class="user-image">
+            <img [src]="user.image" alt="User Profile">
+          </div>
+          <div class="user-details">
+            <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+            <p><i class="fas fa-envelope"></i> {{ user.email }}</p>
+            <p><i class="fas fa-phone"></i> {{ user.phoneNumber }}</p>
+            <p><i class="fas fa-map-marker-alt"></i> {{ user.location }}</p>
+          </div>
+          <div class="user-actions">
+            <button class="action-button edit" title="Edit User">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="action-button delete" title="Delete User" (click)="softDeleteUser(user.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="no-results" *ngIf="filteredUsers.length === 0">
+        <p>No users found.</p>
+      </div>
+    </div>
+  
+    <div class="users-container" *ngIf="showDeletedUsers">
+      <div class="deleted-users-list" *ngIf="deletedUsers.length > 0">
+        <div class="user-card deleted" *ngFor="let user of deletedUsers">
+          <div class="user-image">
+            <img [src]="user.image" alt="User Profile">
+          </div>
+          <div class="user-details">
+            <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+            <p><i class="fas fa-envelope"></i> {{ user.email }}</p>
+            <p><i class="fas fa-phone"></i> {{ user.phoneNumber }}</p>
+            <p><i class="fas fa-map-marker-alt"></i> {{ user.location }}</p>
+          </div>
+          <div class="user-actions">
+            <button class="action-button restore" title="Restore User" (click)="restoreUser(user.id)">
+              <i class="fas fa-undo"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="no-results" *ngIf="deletedUsers.length === 0">
+        <p>No deleted users found.</p>
+      </div>
+    </div>
+  </div>

@@ -1,1 +1,19 @@
-<p>admin-logout works!</p>
+<div class="logout-container" >
+    <div class="logout-modal">
+      <div class="modal-header">
+        <h2>Confirm Logout</h2>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to log out?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="action-button cancel" (click)="cancelLogout()">
+          <i class="fas fa-times"></i> No, Stay Logged In
+        </button>
+        <button class="action-button confirm" (click)="confirmLogout()">
+          <i class="fas fa-sign-out-alt"></i> Yes, Log Out
+        </button>
+      </div>
+    </div>
+    <div class="backdrop" (click)="cancelLogout()"></div>
+  </div>

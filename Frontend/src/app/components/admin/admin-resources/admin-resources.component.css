@@ -1,0 +1,215 @@
+.main-container {
+    padding: 20px;
+    background-color: #191A1C;
+    color: white;
+    min-height: 100vh;
+  }
+  
+  h2 {
+    color: white;
+    border-bottom: 2px solid #5F6468;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Resource List Styles */
+  .resource-list, .venue-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .resource-card, .venue-card {
+    background-color: #1E1E1E;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid #5F6468;
+  }
+  
+  .resource-card:hover, .venue-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .resource-image, .venue-image {
+    height: 180px;
+    overflow: hidden;
+  }
+  
+  .resource-image img, .venue-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .resource-info, .venue-info {
+    padding: 15px;
+  }
+  
+  .resource-info h3, .venue-info h3 {
+    margin: 0 0 10px 0;
+    color: white;
+  }
+  
+  .resource-actions, .venue-actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 15px 15px 15px;
+  }
+  
+  /* Button Styles */
+  .action-btn {
+    background-color: #0FE916;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .action-btn i {
+    font-size: 16px;
+  }
+  
+  .view-btn {
+    background-color: #0FE916;
+  }
+  
+  .edit-btn {
+    background-color: #0FE916;
+  }
+  
+  .delete-btn {
+    background-color: #FF3B30;
+  }
+  
+  .action-btn:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+  
+  /* Resource Details Styles */
+  .resource-details {
+    padding: 20px;
+    background-color: #1E1E1E;
+    border-radius: 8px;
+    border: 1px solid #5F6468;
+  }
+  
+  .back-btn {
+    background-color: #0FE916;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: fit-content;
+  }
+  
+  .detail-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  @media (min-width: 768px) {
+    .detail-card {
+      flex-direction: row;
+    }
+  
+    .detail-image {
+      flex: 0 0 40%;
+    }
+  }
+  
+  .detail-image img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .detail-info {
+    padding: 15px;
+    background-color: #1E1E1E;
+    border-radius: 8px;
+    flex: 1;
+  }
+  
+  .detail-info h3 {
+    margin-top: 0;
+    color: white;
+  }
+  
+  .detail-info p {
+    margin: 10px 0;
+  }
+  
+  /* Edit Form Styles */
+  .edit-form {
+    padding: 20px;
+    background-color: #1E1E1E;
+    border-radius: 8px;
+    border: 1px solid #5F6468;
+    margin-top: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #5F6468;
+    background-color: #191A1C;
+    color: white;
+  }
+  
+  .form-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .save-btn, .cancel-btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .save-btn {
+    background-color: #0FE916;
+    color: white;
+  }
+  
+  .cancel-btn {
+    background-color: #5F6468;
+    color: white;
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .resource-details, .edit-form {
+    animation: fadeIn 0.3s ease-in-out;
+  }
