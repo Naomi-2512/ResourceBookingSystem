@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { VenueBooking } from "../interfaces/resources.interface";
 import { v4 } from "uuid";
 
-export class venueBookingsService{
+export class VenueBookingsService{
     prisma = new PrismaClient({
         log:['error']
     })

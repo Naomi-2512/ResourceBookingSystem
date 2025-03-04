@@ -18,6 +18,7 @@ model Users {
   profileImage     String
   firstName        String
   lastName         String
+  role             String   @default("user")
   isDeleted        Boolean            @default(false)
   isWelcomed       Boolean            @default(false)
   phone1           String             @unique
@@ -69,16 +70,16 @@ model Venue {
 }
 
 model VenueBookings {
-  bookId     String   @id @unique
-  userId     String
-  venueId    String
-  dateBooked DateTime @default(now())
-  isCancelled      Boolean   @default(false)
-  isApproved       Boolean   @default(false)
-  startTime  DateTime
-  duration   Int
-  User       Users    @relation(fields: [userId], references: [userId], onDelete: NoAction)
-  Venue      Venue    @relation(fields: [venueId], references: [venueId], onDelete: NoAction)
+  bookId      String   @id @unique
+  userId      String
+  venueId     String
+  dateBooked  DateTime @default(now())
+  isCancelled Boolean  @default(false)
+  isApproved  Boolean  @default(false)
+  startTime   DateTime
+  duration    Int
+  User        Users    @relation(fields: [userId], references: [userId], onDelete: NoAction)
+  Venue       Venue    @relation(fields: [venueId], references: [venueId], onDelete: NoAction)
 }
 
 model Chats {

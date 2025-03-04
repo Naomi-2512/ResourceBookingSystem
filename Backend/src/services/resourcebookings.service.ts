@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Resource, ResourceBooking } from "../interfaces/resources.interface";
+import { Resource, ResourceBooking, ReturnedResource } from "../interfaces/resources.interface";
 import { v4 } from "uuid";
 
 export class ResourceBookingsService{
@@ -122,10 +122,10 @@ export class ResourceBookingsService{
         }
     }
 
-    async returnResourceBook(bookId:string,resourceId:string){
+    async returnResourceBook(resource: ReturnedResource){
         let bookReturned = await this.prisma.resourceBookings.update({
             where:{
-                bookId: bookId
+                bookId: resource.bookId
             },
             data:{
                 isReturned:true
@@ -139,7 +139,7 @@ export class ResourceBookingsService{
         else{
             let resourceExists = await this.prisma.resources.findUnique({
                 where:{
-                    resourceId
+                    resourceId: resource.resourceId
                 }
             })
             if(!resourceExists){

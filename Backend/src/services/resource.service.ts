@@ -105,7 +105,7 @@ export class ResourceService{
         }
     }
     
-    async getAvailableResiurces(Availability:boolean){
+    async getAvailableResources(){
         let resourcesFetched = await this.prisma.resources.findMany({
             where:{
                 Availability:true

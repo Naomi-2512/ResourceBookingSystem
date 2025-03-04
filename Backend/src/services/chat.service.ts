@@ -97,4 +97,22 @@ export class ChatsServices{
             }
         }
     }
+
+    async getOneChat(chatId:string){
+        let chatFetched = await this.prisma.chats.findMany({
+            where:{
+                chatId
+            }
+        })
+        if (chatFetched) {
+            return{
+                "message":"Chat fetched successfully"
+            }
+        }
+        else{
+            return{
+                "error":"Failed to fetch chat"
+            }
+        }
+    }
 }

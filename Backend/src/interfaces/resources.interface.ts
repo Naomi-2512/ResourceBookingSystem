@@ -2,6 +2,7 @@
 export interface User {
     userId: string;
     profileImage: string;
+    role:string;
     firstName: string;
     lastName: string;
     phone1: string;
@@ -88,4 +89,14 @@ export interface User {
     categoryId: string;
     categoryName: string;
     Resources?: Resource[];
+  }
+
+  export interface TokenDetails{
+    userId:string;
+    role:string;
+  }
+
+  export interface ReturnedResource{
+    bookId:string;
+    resourceId:string
   }
