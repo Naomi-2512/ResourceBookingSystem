@@ -1,0 +1,173 @@
+<div class="password-reset-wrapper">
+    <div class="reset-panel">
+      <!-- Logo and branding area -->
+      <div class="brand-header">
+        <div class="brand-logo">
+          <div class="logo-inner"></div>
+        </div>
+        <h1>Campus Resource</h1>
+      </div>
+  
+      <!-- Progress tracker -->
+      <div class="progress-tracker">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-labels">
+          <div class="progress-step active" id="stepLabel1">Email</div>
+          <div class="progress-step" id="stepLabel2">Verify</div>
+          <div class="progress-step" id="stepLabel3">Reset</div>
+          <div class="progress-step" id="stepLabel4">Done</div>
+        </div>
+      </div>
+  
+      <!-- Step 1: Email input -->
+      <div class="reset-content" id="emailStep">
+        <div class="step-header">
+          <h2>Recover Your Account</h2>
+          <p class="step-description">Please enter your email address to receive a verification code</p>
+        </div>
+  
+        <form class="reset-form">
+          <div class="form-floating">
+            <input type="email" id="recoveryEmail" class="form-control" placeholder=" " required [(ngModel)]="email" name="email">
+            <label for="recoveryEmail">Email Address</label>
+          </div>
+  
+          <div class="form-actions">
+            <button type="button" class="btn-primary" id="sendCodeBtn" (click)="sendVerificationCode()">Send Recovery Code</button>
+            <button type="button" class="btn-text" id="backToLoginBtn" (click)="goToLogin()">Return to Login</button>
+          </div>
+        </form>
+      </div>
+  
+      <!-- Step 2: Verification code -->
+      <div class="reset-content" id="verifyStep" style="display: none;">
+        <div class="step-header">
+          <h2>Verification Code</h2>
+          <p class="step-description">Enter the 6-digit code we sent to <span id="emailDisplay">your email</span></p>
+        </div>
+  
+        <form class="reset-form">
+          <div class="verification-code">
+            <input type="text" class="code-digit" maxlength="1" pattern="[0-9]" inputmode="numeric">
+            <input type="text" class="code-digit" maxlength="1" pattern="[0-9]" inputmode="numeric">
+            <input type="text" class="code-digit" maxlength="1" pattern="[0-9]" inputmode="numeric">
+            <input type="text" class="code-digit" maxlength="1" pattern="[0-9]" inputmode="numeric">
+            <input type="text" class="code-digit" maxlength="1" pattern="[0-9]" inputmode="numeric">
+            <input type="text" class="code-digit" maxlength="1" pattern="[0-9]" inputmode="numeric">
+          </div>
+  
+          <div class="verification-timer">
+            <span id="timerDisplay">05:00</span> remaining
+          </div>
+  
+          <div class="form-actions">
+            <button type="button" class="btn-primary" id="verifyCodeBtn" (click)="verifyCode()">Verify Code</button>
+            <button type="button" class="btn-outline" id="resendCodeBtn" (click)="resendCode()" disabled>
+              Resend Code (<span id="resendTimer">30</span>s)
+            </button>
+          </div>
+        </form>
+      </div>
+  
+      <!-- Step 3: New password -->
+      <div class="reset-content" id="newPasswordStep" style="display: none;">
+        <div class="step-header">
+          <h2>Create New Password</h2>
+          <p class="step-description">Your password must meet the requirements below</p>
+        </div>
+  
+        <form class="reset-form">
+          <div class="form-floating">
+            <input type="password" id="newPassword" class="form-control" placeholder=" " 
+                   [(ngModel)]="newPassword" name="newPassword"
+                   (input)="checkPasswordStrength(newPassword); checkPasswordsMatch()">
+            <label for="newPassword">New Password</label>
+            <button type="button" class="password-toggle" data-target="newPassword" (click)="togglePasswordVisibility('newPassword')">
+              <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg class="eye-slash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+  
+          <div class="password-requirements">
+            <div class="strength-indicator">
+              <div class="strength-label">Password Strength</div>
+              <div class="strength-bars">
+                <span class="strength-segment" data-strength="1"></span>
+                <span class="strength-segment" data-strength="2"></span>
+                <span class="strength-segment" data-strength="3"></span>
+                <span class="strength-segment" data-strength="4"></span>
+              </div>
+            </div>
+            
+            <ul class="requirements-list">
+              <li class="requirement" id="req-length">At least 8 characters</li>
+              <li class="requirement" id="req-uppercase">Contains uppercase letter</li>
+              <li class="requirement" id="req-lowercase">Contains lowercase letter</li>
+              <li class="requirement" id="req-number">Contains a number</li>
+            </ul>
+          </div>
+  
+          <div class="form-floating">
+            <input type="password" id="confirmPassword" class="form-control" placeholder=" " 
+                   [(ngModel)]="confirmPassword" name="confirmPassword"
+                   (input)="checkPasswordsMatch()">
+            <label for="confirmPassword">Confirm Password</label>
+            <button type="button" class="password-toggle" data-target="confirmPassword" (click)="togglePasswordVisibility('confirmPassword')">
+              <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg class="eye-slash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+  
+          <div class="password-match" id="passwordMatch">
+            <svg class="match-icon not-matched" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="15" y1="9" x2="9" y2="15"></line>
+              <line x1="9" y1="9" x2="15" y2="15"></line>
+            </svg>
+            <svg class="match-icon matched" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <span>Passwords do not match</span>
+          </div>
+  
+          <div class="form-actions">
+            <button type="button" class="btn-primary" id="resetPasswordBtn" (click)="resetPassword()" disabled>Reset Password</button>
+          </div>
+        </form>
+      </div>
+  
+      <!-- Step 4: Success -->
+      <div class="reset-content" id="successStep" style="display: none;">
+        <div class="success-animation">
+          <svg class="checkmark" viewBox="0 0 52 52">
+            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="checkmark-check" d="M14.1 27.2l7.1 7.2 16.7-16.8" fill="none"/>
+          </svg>
+        </div>
+  
+        <div class="step-header">
+          <h2>Password Reset Complete</h2>
+          <p class="step-description">Your password has been reset successfully. You can now log in with your new password.</p>
+        </div>
+  
+        <div class="form-actions">
+          <button type="button" class="btn-primary" id="goToLoginBtn" (click)="goToLogin()">Go to Login</button>
+        </div>
+      </div>
+    </div>
+  </div>

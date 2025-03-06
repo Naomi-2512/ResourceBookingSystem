@@ -16,11 +16,13 @@ import { AdminChatComponent } from './components/admin/admin-chat/admin-chat.com
 import { AdminLogoutComponent } from './components/admin/admin-logout/admin-logout.component';
 import { AdminUsersComponent } from './components/admin/admin-users/admin-users.component';
 import { AdminDasboardComponent } from './components/admin/admin-dasboard/admin-dasboard.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 export const routes: Routes = [
     {path: '' , component:LandingpageComponent},
     {path: 'register' , component:RegisterComponent},
     {path: 'login' , component:LoginComponent},
+    {path: 'reset' , component:ResetComponent},
     {path: 'user', component:UserComponent , children: [
         {path: 'profile', component: UserProfileComponent},
         {path: 'resources', component: UserResourcesComponent},

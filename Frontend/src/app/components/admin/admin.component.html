@@ -1,20 +1,91 @@
-<div class="entirePage">
+
+
+ <div class="entirePage">
     <app-admin-topbar></app-admin-topbar>
     <div class="container">
         <app-admin-sidebar></app-admin-sidebar>
         <div class="content">
             <div class="topContent">
-                <div class="searchDiv">
-                    <button>Add Resource</button>
-                </div>
-                <div class="searchDiv">
-                    <button>Add Category</button>
+                <div class="buttons-container">
+                    <button class="action-button" (click)="toggleForm('resource')">Add Resource</button>
+                    <button class="action-button" (click)="toggleForm('category')">Add Category</button>
+                    <button class="action-button" (click)="toggleForm('venue')">Add Venue</button>
                 </div>
             </div>
+            
+            <!-- Resource Form Modal -->
+            <div class="modal-overlay" *ngIf="showResourceForm" (click)="closeForm($event)">
+                <div class="modal-content">
+                    <h2>Add New Resource</h2>
+                    <form (submit)="submitResourceForm()">
+                        <div class="form-group">
+                            <label for="resourceImage">Image</label>
+                            <input type="file" id="resourceImage" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label for="resourceName">Name</label>
+                            <input type="text" id="resourceName" placeholder="Resource name">
+                        </div>
+                        <div class="form-group">
+                            <label for="resourceCategory">Category</label>
+                            <select id="resourceCategory">
+                                <option value="">Select category</option>
+                                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="resourceQuantity">Quantity</label>
+                            <input type="number" id="resourceQuantity" placeholder="Enter quantity">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" (click)="closeAllForms()">Cancel</button>
+                            <button type="submit" class="submit-btn">Save Resource</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Category Form Modal -->
+            <div class="modal-overlay" *ngIf="showCategoryForm" (click)="closeForm($event)">
+                <div class="modal-content">
+                    <h2>Add New Category</h2>
+                    <form (submit)="submitCategoryForm()">
+                        <div class="form-group">
+                            <label for="categoryName">Category Name</label>
+                            <input type="text" id="categoryName" placeholder="Enter category name">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" (click)="closeAllForms()">Cancel</button>
+                            <button type="submit" class="submit-btn">Save Category</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Venue Form Modal -->
+            <div class="modal-overlay" *ngIf="showVenueForm" (click)="closeForm($event)">
+                <div class="modal-content">
+                    <h2>Add New Venue</h2>
+                    <form (submit)="submitVenueForm()">
+                        <div class="form-group">
+                            <label for="venueImage">Image</label>
+                            <input type="file" id="venueImage" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label for="venueName">Name</label>
+                            <input type="text" id="venueName" placeholder="Venue name">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" (click)="closeAllForms()">Cancel</button>
+                            <button type="submit" class="submit-btn">Save Venue</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <div class="otherContent">
                 <router-outlet></router-outlet>
             </div>
         </div>
     </div>
 </div>
-

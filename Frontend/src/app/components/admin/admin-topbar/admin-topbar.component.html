@@ -1,17 +1,75 @@
-<div class="topDiv">
-    <div class="topTitle">
-        <h1 style="color: #0FE916;">NakBookings</h1>
-    </div>
-    <div class="topRoutes">
-        <div class="route1">
-            <a routerlink="">Home</a>
-        </div>
-        <div class="route2">
-            <i class='bx bx-bell notification'></i>
-        </div>
-        <div class="route3">
-            <i class='bx bx-user notification' ></i>
-        </div>
-    </div>
-</div>
 
+ <div class="topbar">
+    <div class="topbar-brand">
+        <h1 class="brand-name">NakBookings</h1>
+    </div>
+    
+    <div class="topbar-search">
+        <div class="search-wrapper">
+            <i class='bx bx-search search-icon'></i>
+            <input type="text" placeholder="Search...">
+        </div>
+    </div>
+    
+    <nav class="topbar-nav">
+        <a routerLink="" class="nav-item" routerLinkActive="active">
+            <i class='bx bx-home-alt'></i>
+            <span>Home</span>
+        </a>
+        
+        <div class="nav-item notification-dropdown">
+            <i class='bx bx-bell'></i>
+            <span>Notifications</span>
+            <span class="notification-badge" *ngIf="notificationCount > 0">{{notificationCount}}</span>
+            <div class="dropdown-content">
+                <div class="dropdown-header">
+                    <h3>Notifications</h3>
+                    <button class="mark-read-btn" *ngIf="hasUnreadNotifications">Mark all as read</button>
+                </div>
+                <div class="notification-list" *ngIf="notifications.length > 0">
+                    <div class="notification-item" *ngFor="let notification of notifications" [class.unread]="!notification.read">
+                        <div class="notification-icon" [ngClass]="notification.type">
+                            <i class="bx" [ngClass]="getNotificationIcon(notification.type)"></i>
+                        </div>
+                        <div class="notification-content">
+                            <p class="notification-text">{{notification.message}}</p>
+                            <p class="notification-time">{{notification.time}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="no-notifications" *ngIf="notifications.length === 0">
+                    <p>No notifications yet</p>
+                </div>
+                <div class="dropdown-footer" *ngIf="notifications.length > 0">
+                    <a routerLink="/notifications">View all notifications</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="nav-item user-dropdown">
+            <div class="user-avatar">
+                <img src="https://randomuser.me/api/portraits/men/1.jpg" onerror="this.src='assets/images/default-avatar.png'">
+            </div>
+            <span>Profile</span>
+            <div class="dropdown-content">
+                <a routerLink="/admin/profile">
+                    <i class='bx bx-user'></i>
+                    <span>My Profile</span>
+                </a>
+                <a routerLink="/settings">
+                    <i class='bx bx-cog'></i>
+                    <span>Settings</span>
+                </a>
+                <a routerLink="/help">
+                    <i class='bx bx-help-circle'></i>
+                    <span>Help Center</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a (click)="logout()">
+                    <i class='bx bx-log-out'></i>
+                    <span>Log Out</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>

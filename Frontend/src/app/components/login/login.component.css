@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --hover-color: #0FE916;
     --text-color: white;
     --bg-color:#1E1E1E;
@@ -133,4 +133,342 @@ form{
     opacity: 0.7;
     text-decoration: none;
     font-style: italic;
-}
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+  }
+  
+  body {
+    background-color: #191A1C;
+    color: white;
+  }
+  
+  /* Container styling */
+  .login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #191A1C;
+  }
+  
+  .form-container {
+    background-color: #1E1E1E;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Form header */
+  .form-header {
+    text-align: center;
+    padding: 30px 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .form-header h1 {
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .form-header p {
+    color: white;
+    opacity: 0.7;
+    font-size: 16px;
+  }
+  
+  /* Form styling */
+  .login-form {
+    padding: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #5F6468;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    transition: all 0.3s ease;
+  }
+  
+  input:focus {
+    outline: 2px solid #0FE916;
+    box-shadow: 0 0 0 2px rgba(15, 233, 22, 0.3);
+  }
+  
+  input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  /* Logo styling */
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  .app-logo {
+    width: 80px;
+    height: 80px;
+    background-color: #0FE916;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .logo-icon {
+    font-size: 40px;
+    color: #000;
+  }
+  
+  /* Password input styling */
+  .password-input {
+    position: relative;
+    width: 100%;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+  }
+  
+  .toggle-password:hover {
+    opacity: 1;
+  }
+  
+  /* Remember me and forgot password */
+  .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+  }
+  
+  .remember-me input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  
+  .checkbox-label {
+    display: inline;
+    font-size: 14px;
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+  
+  .forgot-password {
+    font-size: 14px;
+    color: #0FE916;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  /* Submit button */
+  .submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #0FE916;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .submit-btn:hover {
+    background-color: #0cd014;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+  
+  /* Message containers */
+  .message-container {
+    margin: 20px 0;
+    display: none; /* Hide by default, show with JS */
+  }
+  
+  .success-message, .error-message {
+    padding: 14px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .success-message {
+    background-color: rgba(75, 181, 67, 0.2);
+    border-left: 4px solid #4BB543;
+  }
+  
+  .error-message {
+    background-color: rgba(255, 77, 77, 0.2);
+    border-left: 4px solid #ff4d4d;
+  }
+  
+  .success-icon, .error-icon {
+    font-size: 20px;
+  }
+  
+  .success-icon {
+    color: #4BB543;
+  }
+  
+  .error-icon {
+    color: #ff4d4d;
+  }
+  
+  /* Register link */
+  .register-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: white;
+    opacity: 0.8;
+  }
+  
+  .register-link a {
+    color: #0FE916;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 25px 0;
+  }
+  
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .divider span {
+    padding: 0 10px;
+    font-size: 14px;
+    color: white;
+    opacity: 0.5;
+  }
+  
+  /* Social login */
+  .social-login {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .social-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background-color: #5F6468;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .social-btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  .google:hover {
+    background-color: #DB4437;
+  }
+  
+  .facebook:hover {
+    background-color: #4267B2;
+  }
+  
+  .microsoft:hover {
+    background-color: #00A4EF;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 480px) {
+    .form-header h1 {
+      font-size: 24px;
+    }
+    
+    .login-form {
+      padding: 20px;
+    }
+    
+    .app-logo {
+      width: 70px;
+      height: 70px;
+    }
+    
+    .logo-icon {
+      font-size: 35px;
+    }
+    
+    .remember-forgot {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }

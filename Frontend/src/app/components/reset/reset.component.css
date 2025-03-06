@@ -1,0 +1,484 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+  }
+  .password-reset-wrapper {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    background-color: var(--background);
+    padding: 1rem;
+  }
+  
+  .reset-panel {
+    width: 100%;
+    max-width: 650px;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Branding and logo */
+  .brand-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 0;
+    position: relative;
+    background: linear-gradient(135deg, var(--primary-transparent), transparent);
+  }
+  
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background-color: var(--primary);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.75rem;
+  }
+  
+  .logo-inner {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    background-color: var(--card-bg);
+  }
+  
+  .brand-header h1 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  /* Progress tracker */
+  .progress-tracker {
+    padding: 0 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .progress-bar {
+    height: 4px;
+    background-color: var(--neutral);
+    border-radius: 2px;
+    position: relative;
+    margin-bottom: 0.75rem;
+  }
+  
+  .progress-fill {
+    position: absolute;
+    height: 100%;
+    width: 25%; /* 25% for first step, 50% for second, 75% for third, 100% for fourth */
+    background-color: var(--primary);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+  
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .progress-step {
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  
+  .progress-step.active {
+    color: var(--primary);
+    transform: scale(1.05);
+  }
+  
+  .progress-step.completed {
+    color: var(--text-secondary);
+  }
+  
+  /* Content sections */
+  .reset-content {
+    padding: 1.5rem;
+  }
+  
+  .step-header {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .step-header h2 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .step-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  /* Form elements */
+  .reset-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .form-floating {
+    position: relative;
+  }
+  
+  .form-control {
+    width: 100%;
+    height: 56px;
+    padding: 1rem 1rem 0.5rem;
+    background-color: var(--input-bg);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+  
+  .form-control:focus {
+    outline: none;
+    background-color: var(--input-focus);
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+  
+  .form-floating label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: var(--text-tertiary);
+    transition: var(--transition);
+    pointer-events: none;
+  }
+  
+  .form-control:focus + label, 
+  .form-control:not(:placeholder-shown) + label {
+    top: 30%;
+    font-size: 0.75rem;
+    color: var(--primary);
+  }
+  
+  /* Password visibility toggle */
+  .password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .password-toggle svg {
+    width: 20px;
+    height: 20px;
+    transition: var(--transition);
+  }
+  
+  .password-toggle .eye-slash-icon {
+    display: none;
+  }
+  
+  .password-toggle.show .eye-icon {
+    display: none;
+  }
+  
+  .password-toggle.show .eye-slash-icon {
+    display: block;
+  }
+  
+  /* Password strength indicator */
+  .password-requirements {
+    background-color: rgba(95, 100, 104, 0.3);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+  }
+  
+  .strength-indicator {
+    margin-bottom: 0.75rem;
+  }
+  
+  .strength-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .strength-bars {
+    display: flex;
+    gap: 4px;
+  }
+  
+  .strength-segment {
+    height: 6px;
+    flex: 1;
+    background-color: var(--neutral);
+    border-radius: 3px;
+    transition: var(--transition);
+  }
+  
+  .strength-segment.active[data-strength="1"] {
+    background-color: var(--danger);
+  }
+  
+  .strength-segment.active[data-strength="2"] {
+    background-color: var(--warning);
+  }
+  
+  .strength-segment.active[data-strength="3"] {
+    background-color: var(--primary);
+  }
+  
+  .strength-segment.active[data-strength="4"] {
+    background-color: var(--success);
+  }
+  
+  .requirements-list {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .requirement {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+  }
+  
+  .requirement::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: var(--neutral);
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+  }
+  
+  .requirement.valid {
+    color: var(--text-primary);
+  }
+  
+  .requirement.valid::before {
+    background-color: var(--success);
+  }
+  
+  /* Password match indicator */
+  .password-match {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--danger);
+  }
+  
+  .match-icon {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.5;
+  }
+  
+  .match-icon.not-matched {
+    stroke: var(--danger);
+    display: block;
+  }
+  
+  .match-icon.matched {
+    stroke: var(--success);
+    display: none;
+  }
+  
+  .password-match.valid {
+    color: var(--success);
+  }
+  
+  .password-match.valid .match-icon.not-matched {
+    display: none;
+  }
+  
+  .password-match.valid .match-icon.matched {
+    display: block;
+  }
+  
+  /* Verification code */
+  .verification-code {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .code-digit {
+    width: 52px;
+    height: 64px;
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: var(--input-bg);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    transition: var(--transition);
+  }
+  
+  .code-digit:focus {
+    outline: none;
+    background-color: var(--input-focus);
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+  
+  .verification-timer {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Buttons and actions */
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .btn-primary, .btn-outline, .btn-text {
+    display: block;
+    width: 100%;
+    height: 48px;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    border: none;
+    font-size: 0.95rem;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary);
+    color: var(--background);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(15, 233, 22, 0.3);
+  }
+  
+  .btn-primary:disabled {
+    background-color: rgba(15, 233, 22, 0.5);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .btn-outline {
+    background-color: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+  }
+  
+  .btn-outline:hover {
+    background-color: var(--primary-transparent);
+  }
+  
+  .btn-outline:disabled {
+    color: var(--text-tertiary);
+    border-color: var(--neutral);
+    cursor: not-allowed;
+  }
+  
+  .btn-text {
+    background-color: transparent;
+    color: var(--text-secondary);
+    height: auto;
+    padding: 0.5rem;
+  }
+  
+  .btn-text:hover {
+    color: var(--primary);
+  }
+  
+  /* Success animation */
+  .success-animation {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 2rem;
+  }
+  
+  .checkmark {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke: var(--primary);
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  }
+  
+  .checkmark-check {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    stroke-width: 3;
+    stroke: var(--primary);
+    fill: none;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+  }
+  
+  @keyframes stroke {
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .reset-panel {
+      max-width: 100%;
+      border-radius: 12px;
+    }
+  
+    .step-header h2 {
+      font-size: 1.25rem;
+    }
+  
+    .code-digit {
+      width: 45px;
+      height: 55px;
+      font-size: 1.25rem;
+    }
+  
+    .requirements-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    .code-digit {
+      width: 40px;
+      height: 50px;
+    }
+  }
