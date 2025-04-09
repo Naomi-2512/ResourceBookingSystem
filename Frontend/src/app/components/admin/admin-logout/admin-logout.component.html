@@ -1,19 +1,17 @@
-<div class="logout-container" >
-    <div class="logout-modal">
-      <div class="modal-header">
-        <h2>Confirm Logout</h2>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to log out?</p>
-      </div>
-      <div class="modal-footer">
-        <button class="action-button cancel" (click)="cancelLogout()">
-          <i class="fas fa-times"></i> No, Stay Logged In
-        </button>
-        <button class="action-button confirm" (click)="confirmLogout()">
-          <i class="fas fa-sign-out-alt"></i> Yes, Log Out
-        </button>
-      </div>
+<div class="logoutDiv">
+  <div class="logoutCard">
+    <div class="iconDiv">
+      <i class='bx bx-log-out iconn'></i>
     </div>
-    <div class="backdrop" (click)="cancelLogout()"></div>
+    <div class="textDiv">
+      <h3>Oh no...you are leaving.</h3>
+      <h3>Are you sure? </h3>
+    </div>
+    <div class="yesButton">
+      <button routerLink="/admin/dashboard">Nah..just kidding</button>
+    </div>
+    <div class="noButton">
+      <button routerLink="/login">Yes..log me out</button>
+    </div>
   </div>
+</div>

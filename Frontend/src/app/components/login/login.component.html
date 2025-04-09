@@ -1,102 +1,56 @@
-<!-- <div class="registrationPage">
-    <div class="registrationCard">
-        <div class="imageDiv">
-            <img src="https://static.vecteezy.com/system/resources/previews/029/510/170/large_2x/empty-modern-movie-theatre-interior-with-screen-and-seats-generative-ai-photo.jpg" alt="">
-        </div>
-        <div class="formDiv">
-            <div class="sign">
-                <h2>Welcome back!!!</h2>
-            </div>
-            <div class="form">
-                <form action="">
-                    <div class="inputDiv">
-                        <input type="email" placeholder="Email" required>
-                    </div>
-                    <div class="inputDiv">
-                        <input type="password" placeholder="Password" required>
-                    </div>
-                    <div class="submitDiv">
-                        <button type="submit">Login</button>
-                    </div>
-                    <div class="termsDiv">
-                        <p>Do not have an account?<a routerLink="/register" class="anchor">Sign up here</a></p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> -->
-
+<app-notification></app-notification>
 <div class="login-container">
-    <div class="form-container">
-      <div class="form-header">
-        <h1>Welcome Back</h1>
-        <p>Access the campus resource booking system</p>
-      </div>
-  
-      <form class="login-form">
-        <div class="logo-container">
-          <div class="app-logo">
-            <span class="logo-icon">🏫</span>
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email address" />
-        </div>
-  
-        <div class="form-group">
-          <label for="password">Password</label>
-          <div class="password-input">
-            <input type="password" id="password" name="password" placeholder="Enter your password" />
-            <span class="toggle-password">👁️</span>
-          </div>
-        </div>
-  
-        <div class="remember-forgot">
-          <div class="remember-me">
-            <input type="checkbox" id="remember" name="remember" />
-            <label for="remember" class="checkbox-label">Remember me</label>
-          </div>
-          <a routerLink="/reset" class="forgot-password">Forgot Password?</a>
-        </div>
-  
-        <div class="message-container" id="success-message">
-          <div class="success-message">
-            <i class="success-icon">✓</i>
-            <span>Login successful! Redirecting...</span>
-          </div>
-        </div>
-  
-        <div class="message-container" id="error-message">
-          <div class="error-message">
-            <i class="error-icon">⚠️</i>
-            <span>Invalid email or password. Please try again.</span>
-          </div>
-        </div>
-  
-        <button type="submit" class="submit-btn">Log In</button>
-  
-        <div class="register-link">
-            <p>Do not have an account?<a routerLink="/register" class="anchor">Sign up here</a></p>
-        </div>
-  
-        <div class="divider">
-          <span>or continue with</span>
-        </div>
-  
-        <div class="social-login">
-          <button type="button" class="social-btn google">
-            G
-          </button>
-          <button type="button" class="social-btn facebook">
-            f
-          </button>
-          <button type="button" class="social-btn microsoft">
-            M
-          </button>
-        </div>
-      </form>
+  <div class="form-container">
+    <div class="form-header">
+      <h1>Welcome Back</h1>
+      <p>Access the campus resource booking system</p>
     </div>
+
+    <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="logo-container">
+        <div class="app-logo">
+          <span class="logo-icon">🏫</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address"
+          [(ngModel)]="loginDetails.email" required email />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="password-input">
+          <input type="password" id="password" name="password" placeholder="Enter your password"
+            [(ngModel)]="loginDetails.password" required />
+          <span class="toggle-password">👁️</span>
+        </div>
+      </div>
+
+      <div class="remember-forgot">
+        <div class="remember-me">
+          <input type="checkbox" id="remember" name="remember" [(ngModel)]="rememberMe" />
+          <label for="remember" class="checkbox-label">Remember me</label>
+        </div>
+        <a routerLink="/reset" class="forgot-password">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="submit-btn" [disabled]="!loginForm.valid">Log In</button>
+
+      <div class="register-link">
+        <p>Do not have an account? <a routerLink="/register" class="anchor">Sign up here</a></p>
+      </div>
+
+      <div class="divider">
+        <span>or continue with</span>
+      </div>
+
+      <div class="social-login">
+        <button type="button" class="social-btn google">G</button>
+        <button type="button" class="social-btn facebook">f</button>
+        <button type="button" class="social-btn microsoft">M</button>
+      </div>
+    </form>
   </div>
+</div>

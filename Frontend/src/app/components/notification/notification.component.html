@@ -1,0 +1,22 @@
+<div class="notification-container" [style]="message ? {'display': 'grid'} : {'display': 'none'}"
+    [ngClass]="{'notification-show': message, 'notification-success': type, 'notification-error': type === false}">
+    <div class="notification-header notification-header-success" *ngIf="type">
+        <i class='bx bx-check-circle'></i>
+        <h3>Success</h3>
+        <button class="notification-close" (click)="_ns.clearNotification()">
+            <i class='bx bx-x'></i>
+        </button>
+    </div>
+    <div class="notification-header notification-header-error" *ngIf="type === false">
+        <i class='bx bx-error-circle'></i>
+        <h3>Error</h3>
+        <button class="notification-close" (click)="_ns.clearNotification()">
+            <i class='bx bx-x'></i>
+        </button>
+    </div>
+    <div class="notification-body">
+        <p>{{ message }}</p>
+    </div>
+    <div class="notification-progress"
+        [ngClass]="{'notification-progress-success': type, 'notification-progress-error': type === false}"></div>
+</div>

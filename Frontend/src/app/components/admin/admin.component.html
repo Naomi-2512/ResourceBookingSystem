@@ -1,4 +1,4 @@
-
+<!-- 
 
  <div class="entirePage">
     <app-admin-topbar></app-admin-topbar>
@@ -13,7 +13,7 @@
                 </div>
             </div>
             
-            <!-- Resource Form Modal -->
+            
             <div class="modal-overlay" *ngIf="showResourceForm" (click)="closeForm($event)">
                 <div class="modal-content">
                     <h2>Add New Resource</h2>
@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <!-- Category Form Modal -->
+            
             <div class="modal-overlay" *ngIf="showCategoryForm" (click)="closeForm($event)">
                 <div class="modal-content">
                     <h2>Add New Category</h2>
@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <!-- Venue Form Modal -->
+            
             <div class="modal-overlay" *ngIf="showVenueForm" (click)="closeForm($event)">
                 <div class="modal-content">
                     <h2>Add New Venue</h2>
@@ -78,6 +78,107 @@
                         <div class="form-actions">
                             <button type="button" class="cancel-btn" (click)="closeAllForms()">Cancel</button>
                             <button type="submit" class="submit-btn">Save Venue</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="otherContent">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<app-notification></app-notification>
+<div class="entirePage">
+    <app-admin-topbar></app-admin-topbar>
+    <div class="container">
+        <app-admin-sidebar></app-admin-sidebar>
+        <div class="content">
+            <div class="topContent">
+                <div class="buttons-container">
+                    <button class="action-button" (click)="toggleForm('resource')">Add Resource</button>
+                    <button class="action-button" (click)="toggleForm('category')">Add Category</button>
+                    <button class="action-button" (click)="toggleForm('venue')">Add Venue</button>
+                </div>
+            </div>
+
+            <!-- Resource Form Modal -->
+            <div class="modal-overlay" *ngIf="showResourceForm" (click)="closeForm($event)">
+                <div class="modal-content">
+                    <h2>Add New Resource</h2>
+                    <form #resourceForm="ngForm" (ngSubmit)="submitResourceForm($event)">
+                        <div class="form-group">
+                            <label for="resourceImage">Image URL</label>
+                            <input type="text" id="resourceImage" name="image" [(ngModel)]="newResource.image"
+                                placeholder="Enter image URL" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="resourceName">Name</label>
+                            <input type="text" id="resourceName" name="name" [(ngModel)]="newResource.name"
+                                placeholder="Resource name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="resourceCategory">Category</label>
+                            <select id="resourceCategory" name="categoryId" [(ngModel)]="newResource.categoryId"
+                                required>
+                                <option value="">Select category</option>
+                                <option *ngFor="let category of categories" [value]="category.categoryId">{{
+                                    category.categoryName }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="resourceQuantity">Quantity</label>
+                            <input type="number" id="resourceQuantity" name="Quantity"
+                                [(ngModel)]="newResource.Quantity" placeholder="Enter quantity" required min="0">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" (click)="closeAllForms()">Cancel</button>
+                            <button type="submit" class="submit-btn" [disabled]="!resourceForm.valid">Save
+                                Resource</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Category Form Modal -->
+            <div class="modal-overlay" *ngIf="showCategoryForm" (click)="closeForm($event)">
+                <div class="modal-content">
+                    <h2>Add New Category</h2>
+                    <form #categoryForm="ngForm" (ngSubmit)="submitCategoryForm($event)">
+                        <div class="form-group">
+                            <label for="categoryName">Category Name</label>
+                            <input type="text" id="categoryName" name="categoryName"
+                                [(ngModel)]="newCategory.categoryName" placeholder="Enter category name" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" (click)="closeAllForms()">Cancel</button>
+                            <button type="submit" class="submit-btn" [disabled]="!categoryForm.valid">Save
+                                Category</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Venue Form Modal -->
+            <div class="modal-overlay" *ngIf="showVenueForm" (click)="closeForm($event)">
+                <div class="modal-content">
+                    <h2>Add New Venue</h2>
+                    <form #venueForm="ngForm" (ngSubmit)="submitVenueForm($event)">
+                        <div class="form-group">
+                            <label for="venueImage">Image URL</label>
+                            <input type="text" id="venueImage" name="Image" [(ngModel)]="newVenue.Image"
+                                placeholder="Enter image URL" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="venueName">Name</label>
+                            <input type="text" id="venueName" name="name" [(ngModel)]="newVenue.name"
+                                placeholder="Venue name" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" (click)="closeAllForms()">Cancel</button>
+                            <button type="submit" class="submit-btn" [disabled]="!venueForm.valid">Save Venue</button>
                         </div>
                     </form>
                 </div>

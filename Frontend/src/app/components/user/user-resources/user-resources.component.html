@@ -1,4 +1,4 @@
-<div class="resourceDiv">
+<!-- <div class="resourceDiv">
     <div class="cardDiv" *ngFor="let resource of resources">
         <div class="imageDiv">
             <img [src]="resource.image" [alt]="resource.name">
@@ -9,6 +9,124 @@
         <div class="buttonsDiv">
             <button>Details</button>
             <button>Book</button>
+        </div>
+    </div>
+</div> -->
+
+<app-notification></app-notification>
+<div class="resourceDiv">
+    <div class="view-toggle">
+        <button (click)="toggleView('resources')" [class.active]="viewMode === 'resources'">Resources</button>
+        <button (click)="toggleView('venues')" [class.active]="viewMode === 'venues'">Venues</button>
+    </div>
+
+    <div class="items-container" *ngIf="viewMode === 'resources'">
+        <div class="cardDiv" *ngFor="let resource of resources">
+            <div class="imageDiv">
+                <img [src]="resource.image" [alt]="resource.name">
+            </div>
+            <div class="nameDiv">
+                <h3>{{ resource.name }}</h3>
+                <p>{{ resource.remainingQuantity }} available</p>
+            </div>
+            <div class="buttonsDiv">
+                <button (click)="showDetails(resource)">Details</button>
+                <button (click)="showBookingFormFor(resource)"
+                    [disabled]="resource.remainingQuantity <= 0">Book</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="items-container" *ngIf="viewMode === 'venues'">
+        <div class="cardDiv" *ngFor="let venue of venues">
+            <div class="imageDiv">
+                <img [src]="venue.Image" [alt]="venue.name">
+            </div>
+            <div class="nameDiv">
+                <h3>{{ venue.name }}</h3>
+                <p>{{ venue.Availability ? 'Available' : 'Booked' }}</p>
+            </div>
+            <div class="buttonsDiv">
+                <button (click)="showDetails(venue)">Details</button>
+                <button (click)="showBookingFormFor(venue)" [disabled]="!venue.Availability">Book</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div class="modal-overlay" *ngIf="showDetailsModal && selectedItem" (click)="closeDetailsModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+                <h3>{{ selectedItem.name }}</h3>
+                <button class="close-btn" (click)="closeDetailsModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <img [src]="isResource(selectedItem) ? selectedItem.image : selectedItem.Image"
+                    [alt]="selectedItem.name" class="modal-image">
+                <div class="details-list">
+                    <p><span>Name:</span> {{ selectedItem.name }}</p>
+                    <ng-container *ngIf="isResource(selectedItem)">
+                        <p><span>Category:</span> {{ selectedItem.category }}</p>
+                        <p><span>Total Quantity:</span> {{ selectedItem.Quantity }}</p>
+                        <p><span>Available:</span> {{ selectedItem.remainingQuantity }}</p>
+                    </ng-container>
+                    <ng-container *ngIf="isVenue(selectedItem)">
+                        <p><span>Availability:</span> {{ selectedItem.Availability ? 'Yes' : 'No' }}</p>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Form Modal -->
+    <div class="modal-overlay" *ngIf="showBookingForm && selectedItem" (click)="closeBookingForm()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+                <h3>Book {{ selectedItem.name }}</h3>
+                <button class="close-btn" (click)="closeBookingForm()">×</button>
+            </div>
+            <div class="modal-body">
+                <form #bookingForm="ngForm" (ngSubmit)="submitBooking($event)">
+                    <ng-container *ngIf="isResource(selectedItem)">
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" id="quantity" name="quantity" [(ngModel)]="resourceBooking.quantity"
+                                min="1" [max]="selectedItem.remainingQuantity" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateBooked">Date Booked</label>
+                            <input type="date" id="dateBooked" name="dateBooked"
+                                [(ngModel)]="resourceBooking.dateBooked" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userReturnDate">Return Date</label>
+                            <input type="date" id="userReturnDate" name="userReturnDate"
+                                [(ngModel)]="resourceBooking.userReturnDate" required>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="isVenue(selectedItem)">
+                        <div class="form-group">
+                            <label for="dateBooked">Date</label>
+                            <input type="date" id="dateBooked" name="dateBooked" [(ngModel)]="venueBooking.dateBooked"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="startTime">Start Time</label>
+                            <input type="time" id="startTime" name="startTime" [(ngModel)]="venueBooking.startTime"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Duration (hours)</label>
+                            <input type="number" id="duration" name="duration" [(ngModel)]="venueBooking.duration"
+                                min="1" required>
+                        </div>
+                    </ng-container>
+                    <div class="form-actions">
+                        <button type="submit" [disabled]="!bookingForm.valid" class="book-btn">Book</button>
+                        <button type="button" class="cancel-btn" (click)="closeBookingForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
